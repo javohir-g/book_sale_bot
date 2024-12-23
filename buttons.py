@@ -74,7 +74,7 @@ def interaktiv_btns():
     markup.add(button1, button2, button3, button4, button5)
     return markup
 
-def interaktiv_5():
+def interaktiv_5btn():
     markup = InlineKeyboardMarkup(row_width=1)
     button1 = InlineKeyboardButton("1-5 metod", callback_data="metod_1_5")
     button2 = InlineKeyboardButton("6-10 metod", callback_data="metod_6_10")
@@ -86,30 +86,39 @@ def interaktiv_5():
     button8 = InlineKeyboardButton("36-40 metod", callback_data="metod_36_40")
     button9 = InlineKeyboardButton("41-45 metod", callback_data="metod_41_45")
     button10 = InlineKeyboardButton("46-50 metod", callback_data="metod_46_50")
-    markup.add(button1, button2, button3, button4, button5, button6, button7, button8, button9, button10)
+    button11 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
+    markup.add(button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11)
     return markup
 
-def interaktiv_10():
+int5_price = 50000
+int10_price = 90000
+int20_price = 160000
+int50_price = 350000
+
+def interaktiv_10btn():
     markup = InlineKeyboardMarkup(row_width=1)
     button1 = InlineKeyboardButton("1-10 metod", callback_data="metod_1_10")
     button3 = InlineKeyboardButton("11-20 metod", callback_data="metod_11_20")
     button5 = InlineKeyboardButton("21-30 metod", callback_data="metod_21_30")
     button7 = InlineKeyboardButton("31-40 metod", callback_data="metod_31_40")
     button9 = InlineKeyboardButton("41-50 metod", callback_data="metod_41_50")
-    markup.add(button1, button3, button5, button7, button9)
+    button10 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
+    markup.add(button1, button3, button5, button7, button9, button10)
     return markup
 
-def interaktiv_20():
+def interaktiv_20btn():
     markup = InlineKeyboardMarkup(row_width=1)
     button1 = InlineKeyboardButton("1-20 metod", callback_data="metod_1_20")
     button2 = InlineKeyboardButton("21-40 metod", callback_data="metod_21_40")
-    markup.add(button1, button2)
+    button5 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
+    markup.add(button1, button2, button5)
     return markup
 
-def interaktiv_50():
+def interaktiv_50btn():
     markup = InlineKeyboardMarkup(row_width=1)
     button1 = InlineKeyboardButton("1-50 metod", callback_data="metod_1_50")
-    markup.add(button1)
+    button5 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
+    markup.add(button1, button5)
     return markup
 
 

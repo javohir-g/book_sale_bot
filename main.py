@@ -13,7 +13,7 @@ updater_thread.daemon = True
 updater_thread.start()
 
 
-BOT_TOKEN = '7158493029:AAHs8WxBKJxw9yV4V85L80QoyW4LGBwhYr0'
+BOT_TOKEN = '7927478236:AAEaWaz1v2rNK9W5Oc2cZ7PPRjDhaZZMUHk'
 book_group_id = -4614622677
 course_group_id = -4782813903
 
@@ -316,9 +316,76 @@ def kurs_menu(message):
     bot.send_message(user_id, "Mavjud kurslar:", reply_markup=kurs_btns())
 
 @bot.callback_query_handler(func=lambda call: call.data in [
+    "metod_1_5", "metod_6_10", "metod_11_15", "metod_15_20", "metod_21_25", "metod_26_30", "metod_31_35", "metod_36_40", "metod_41_45", "metod_46_50",
+    "metod_1_10", "metod_11_20", "metod_21_30", "metod_31_40", "metod_41_50",
+    "metod_1_20", "metod_21_40",
+    "metod_1_50"])
+def callback_course_handler(call):
+
+    if call.data == "metod_1_5":
+        add_to_cart(call.message.chat.id, f"1-5 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "1-5 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_6_10":
+        add_to_cart(call.message.chat.id, f"6-10 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "6-10 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_11_15":
+        add_to_cart(call.message.chat.id, f"11-15 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "11-15 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_15_20":
+        add_to_cart(call.message.chat.id, f"15-20 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "15-20 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_21_25":
+        add_to_cart(call.message.chat.id, f"21-25 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "21-25 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_26_30":
+        add_to_cart(call.message.chat.id, f"26-30 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "26-30 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_31_35":
+        add_to_cart(call.message.chat.id, f"31-35 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "31-35 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_36_40":
+        add_to_cart(call.message.chat.id, f"36-40 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "36-40 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_41_45":
+        add_to_cart(call.message.chat.id, f"41-45 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "41-45 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_46_50":
+        add_to_cart(call.message.chat.id, f"46-50 interaktiv metod", int5_price)
+        bot.answer_callback_query(call.id, "45-50 interaktiv metodlar savatchaga qo`shildi")
+
+    elif call.data == "metod_1_10":
+        add_to_cart(call.message.chat.id, f"1-10 interaktiv metod", int10_price)
+        bot.answer_callback_query(call.id, "1-10 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_11_20":
+        add_to_cart(call.message.chat.id, f"11-20 interaktiv metod", int10_price)
+        bot.answer_callback_query(call.id, "1-20 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_21_30":
+        add_to_cart(call.message.chat.id, f"21-30 interaktiv metod", int10_price)
+        bot.answer_callback_query(call.id, "21-30 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_31_40":
+        add_to_cart(call.message.chat.id, f"31-40 interaktiv metod", int10_price)
+        bot.answer_callback_query(call.id, "31-40 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_41_50":
+        add_to_cart(call.message.chat.id, f"41-50 interaktiv metod", int10_price)
+        bot.answer_callback_query(call.id, "41-50 interaktiv metodlar savatchaga qo`shildi")
+
+    elif call.data == "metod_1_20":
+        add_to_cart(call.message.chat.id, f"1-20 interaktiv metod", int20_price)
+        bot.answer_callback_query(call.id, "1-20 interaktiv metodlar savatchaga qo`shildi")
+    elif call.data == "metod_21_40":
+        add_to_cart(call.message.chat.id, f"21-40 interaktiv metod", int20_price)
+        bot.answer_callback_query(call.id, "21-40 interaktiv metodlar savatchaga qo`shildi")
+
+    elif call.data == "metod_1_50":
+        add_to_cart(call.message.chat.id, f"1-50 interaktiv metod", int50_price)
+        bot.answer_callback_query(call.id, "1-50 interaktiv metodlar savatchaga qo`shildi")
+
+
+
+@bot.callback_query_handler(func=lambda call: call.data in [
     "menu_interaktiv", "menu_pedagogik", "kurs_ekspert",
     "kurs_shogirt", "back_kurs", "back_to_main",
-    "milliy", "maqola", "tajriba"])
+    "milliy", "maqola", "tajriba", "interaktiv_5", "interaktiv_10", "interaktiv_20", "interaktiv_50", "back_to_int"])
 def callback_handler(call):
     if call.data == "menu_interaktiv":
         bot.edit_message_text(
@@ -353,8 +420,15 @@ def callback_handler(call):
             message_id=call.message.message_id,
             reply_markup=kurs_btns())
 
+    elif call.data == "back_to_int":
+        bot.edit_message_text("Mavjud kurslar:",
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=interaktiv_btns())
+
     elif call.data == "back_to_main":
         bot.send_message(call.message.chat.id, "Asosiy menyu:", reply_markup=main_menu())
+
 
     elif call.data == "milliy":
         add_to_cart(call.message.chat.id, f"<b>Milliy tarbiyaning oiladagi va ta`limdagi roli</b> kursi", milliy_price)
@@ -368,12 +442,30 @@ def callback_handler(call):
         add_to_cart(call.message.chat.id, f"<b>Tajribani ommalashtirish</b> kursi", tajriba_price)
         bot.answer_callback_query(call.id, "'Tajribani ommalashtirish' kursi savatchaga qo`shildi")
 
-    elif call.data == "clear_card":
-        ...
 
-    elif call.data == "buy":
-        ...
+    elif call.data == "interaktiv_5":
+        bot.edit_message_text("Interaktiv metodolar:",
+                              chat_id=call.message.chat.id,
+                              message_id=call.message.message_id,
+                              reply_markup=interaktiv_5btn())
 
+    elif call.data == "interaktiv_10":
+        bot.edit_message_text("Interaktiv metodolar:",
+                              chat_id=call.message.chat.id,
+                              message_id=call.message.message_id,
+                              reply_markup=interaktiv_10btn())
+
+    elif call.data == "interaktiv_20":
+        bot.edit_message_text("Interaktiv metodolar:",
+                              chat_id=call.message.chat.id,
+                              message_id=call.message.message_id,
+                              reply_markup=interaktiv_20btn())
+
+    elif call.data == "interaktiv_50":
+        bot.edit_message_text("Interaktiv metodolar:",
+                              chat_id=call.message.chat.id,
+                              message_id=call.message.message_id,
+                              reply_markup=interaktiv_50btn())
 # Функция для добавления товара в корзину
 def add_to_cart(user_id, item_name, price, quantity=1):
     if user_id not in carts:
