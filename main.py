@@ -39,20 +39,19 @@ def get_name(message):
     bot.send_message(user_id, f"{name} tanishganimdan xursandman endi raqamingizni pastdagi tugma orqali yuboring",reply_markup=phone_button_uz())
     bot.register_next_step_handler(message, contact_handler, name)
 
+
 def contact_handler(message, name):
     user_id = message.chat.id
-    user_info = db.get_user(user_id)
-    phone_number = user_info["phone_number"]
 
     if message.contact:
-        bot.send_message(user_id, "Tizimda muvaffaqiyatli ro‘yxatdan o‘tdingiz!")
+        phone_number = message.contact.phone_number
+        bot.send_message(user_id, "Tizimda muvaffaqiyatli ro'yxatdan o'tdingiz!")
         bot.send_message(user_id, "pastdagi tugmalar orqali harakatni tanlang", reply_markup=main_menu())
         db.add_user(name, phone_number, user_id)
     else:
         bot.send_message(user_id, "Raqamingizni pastdagi tugma orqali yuboring",
                          reply_markup=phone_button_uz())
         bot.register_next_step_handler(message, contact_handler, name)
-
 #----------kitob----------------
 @bot.message_handler(func=lambda message: message.text == "📚 Kitob")
 def book_type(message):
