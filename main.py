@@ -15,7 +15,7 @@ updater_thread.start()
 
 BOT_TOKEN = '7158493029:AAHs8WxBKJxw9yV4V85L80QoyW4LGBwhYr0'
 book_group_id = -4614622677
-course_group_id = -4782813903
+course_group_id = -4705809842
 
 bot = telebot.TeleBot(BOT_TOKEN, parse_mode="HTML")
 
@@ -248,7 +248,7 @@ def handle_payment_confirmation(message):
             f"Foydalanuvchi: <b>{name}</b>\n"
             f"Telefon: {phone_number}\n"
             f"Username: @{message.from_user.username}\n"
-            f"Kurslar:\n{formatted_courses}\n"
+            f"Kurslar:\n{user_order["course"]}\n"
             f"Jami summa: {user_order['total']} so'm"
         )
         bot.send_photo(
@@ -402,14 +402,14 @@ def callback_handler(call):
     elif call.data == "kurs_ekspert":
         bot.send_message(
             call.message.chat.id,
-            "Sizning ma'lumotlaringiz (ism, telefon) adminga yuborildi!", reply_markup=main_menu()
+            "Sizning ma'lumotlaringiz adminga yuborildi!", reply_markup=main_menu()
         )
         send_to_admin(call.message, "Ekspertlar uchun metodologiya kursi")
 
     elif call.data == "kurs_shogirt":
         bot.send_message(
             call.message.chat.id,
-            "Sizning ma'lumotlaringiz (ism, telefon) adminga yuborildi!", reply_markup=main_menu()
+            "Sizning ma'lumotlaringiz adminga yuborildi!", reply_markup=main_menu()
         )
         send_to_admin(call.message, "Shogirtlar uchun metodologiya kursi")
 
@@ -435,7 +435,7 @@ def callback_handler(call):
 
     elif call.data == "maqola":
         add_to_cart(call.message.chat.id, f"<b>O`z maqolangizni chop eting</b> kursi", maqola_price)
-        bot.answer_callback_query(call.id, "'O`z maqolangizni chop eting' kursi savatchaga qo`shildi")
+        bot.answer_callback_query(call.id, "O`z maqolangizni chop eting' kursi savatchaga qo`shildi")
 
     elif call.data == "tajriba":
         add_to_cart(call.message.chat.id, f"<b>Tajribani ommalashtirish</b> kursi", tajriba_price)
