@@ -2,7 +2,7 @@ import telebot
 import database as db
 from buttons import *
 from bts_offices import offices, kitob_post
-
+from price import *
 from keep_alive import keep_alive
 keep_alive()
 
