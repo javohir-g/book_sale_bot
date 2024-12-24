@@ -240,7 +240,7 @@ def handle_payment_confirmation(message):
     markup.add(button)
 
     if "course" in user_order:
-        courses_list = user_order['course'].split('</b> kursi')
+        #courses_list = user_order['course'].split('</b> kursi')
         admin_message = (
             "#kurs\n"
             "Yangi ariza (Kurs):\n"
@@ -518,44 +518,5 @@ def clear_cart(call):
     user_id = call.message.chat.id
     carts[user_id] = []
     bot.reply_to(call.message, "Корзина очищена.")
-
-@bot.message_handler(commands=['send_broadcast'])
-def handle_broadcast_command(message):
-    if message.from_user.id not in ADM_USERS:
-        bot.reply_to(message, "У вас нет прав для выполнения этой команды.")
-        return
-
-    bot.reply_to(message, "Пожалуйста, отправьте текст сообщения для рассылки.")
-
-    @bot.message_handler(func=lambda msg: msg.chat.id == message.chat.id, content_types=['text'])
-    def collect_message_text(broadcast_message):
-        text = broadcast_message.text
-        bot.reply_to(broadcast_message, "Отправьте фото для рассылки или напишите 'нет', если фото не требуется.")
-
-        @bot.message_handler(func=lambda msg: msg.chat.id == message.chat.id, content_types=['photo', 'text'])
-        def collect_photo_or_skip(photo_message):
-            if photo_message.content_type == 'photo':
-                photo = photo_message.photo[-1].file_id
-                bot.reply_to(photo_message, "Начинаю рассылку с фото и текстом...")
-                send_broadcast(photo, text)
-            elif photo_message.content_type == 'text' and photo_message.text.lower() == 'нет':
-                bot.reply_to(photo_message, "Начинаю рассылку только с текстом...")
-                send_broadcast(None, text)
-            else:
-                bot.reply_to(photo_message, "Некорректный ввод. Попробуйте снова.")
-
-# Функция рассылки
-def send_broadcast(photo_id, text):
-    users = db.get_all_users()
-    for user_id in users:
-        try:
-            if photo_id:
-                bot.send_photo(user_id, photo_id, caption=text)
-            else:
-                bot.send_message(user_id, text)
-        except Exception as e:
-            print(f"Не удалось отправить сообщение пользователю {user_id}: {e}")
-
-
 
 bot.polling()
