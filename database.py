@@ -78,6 +78,30 @@ def check_user(user_id):
     elif not checker:
         return False
 
+def get_all_users():
+    """Получить список всех пользователей из базы данных."""
+    try:
+        # Подключение к базе данных
+        conn = sqlite3.connect('your_database_name.db')  # Укажите путь к вашей БД
+        cursor = conn.cursor()
+
+        # SQL-запрос для получения всех пользователей
+        cursor.execute("SELECT user_id FROM users")
+        users = cursor.fetchall()
+
+        # Преобразование списка к формату [user_id1, user_id2, ...]
+        user_ids = [user[0] for user in users]
+
+        return user_ids
+    except Exception as e:
+        print(f"Ошибка при получении пользователей: {e}")
+        return []
+    finally:
+        # Закрытие соединения
+        conn.close()
+
+
+
 
 # Initialize the database
 init_db()

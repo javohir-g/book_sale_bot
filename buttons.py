@@ -33,9 +33,10 @@ def kitob_menu():
     return markup
 
 def kitob_buy():
-    markup = InlineKeyboardMarkup()
+    markup = InlineKeyboardMarkup(row_width=1)
     buy_button = InlineKeyboardButton("Ushbu kitobni sotib olish", callback_data="buy_book")
-    markup.add(buy_button)
+    button5 = InlineKeyboardButton("⬅️ Asosiy menyu", callback_data="back_to_main")
+    markup.add(buy_button, button5)
     return markup
 
 def kitob_delivery():
@@ -90,11 +91,6 @@ def interaktiv_5btn():
     markup.add(button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11)
     return markup
 
-int5_price = 50000
-int10_price = 90000
-int20_price = 160000
-int50_price = 350000
-
 def interaktiv_10btn():
     markup = InlineKeyboardMarkup(row_width=1)
     button1 = InlineKeyboardButton("1-10 metod", callback_data="metod_1_10")
@@ -133,12 +129,6 @@ def pedagogik_btns():
     button4 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_kurs")
     markup.add(button1, button2, button3, button4)
     return markup
-
-milliy_price = 10000
-maqola_price = 10000
-tajriba_price = 10000
-
-
 
 def buy():
     markup = InlineKeyboardMarkup(row_width=1)
