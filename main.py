@@ -15,7 +15,7 @@ updater_thread.daemon = True
 updater_thread.start()
 
 
-BOT_TOKEN = '7927478236:AAEaWaz1v2rNK9W5Oc2cZ7PPRjDhaZZMUHk'#'7158493029:AAHs8WxBKJxw9yV4V85L80QoyW4LGBwhYr0'
+BOT_TOKEN = '7158493029:AAHs8WxBKJxw9yV4V85L80QoyW4LGBwhYr0'
 book_group_id = -4614622677
 course_group_id = -4782813903
 
