@@ -176,13 +176,3 @@ offices = {'Andijon': [
 
 
 
-kitob_post = ("Samarali interaktiv metodlar 1.0 kitobi\n\n"
-            "narxi 185 000 so'mdan\n")
-
-# Список курсов
-courses = ["video1", "video2", "video3", "video4", "video5",
-           "video6", "video7", "video8", "video9", "video10"]
-
-# Стоимость курсов
-FULL_COURSE_PRICE = 10000  # Стоимость полного курса
-SINGLE_VIDEO_PRICE = 1500  # Стоимость одного видео
