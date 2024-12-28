@@ -15,7 +15,7 @@ updater_thread.daemon = True
 updater_thread.start()
 
 
-BOT_TOKEN = '7158493029:AAHs8WxBKJxw9yV4V85L80QoyW4LGBwhYr0'
+BOT_TOKEN = '7927478236:AAEaWaz1v2rNK9W5Oc2cZ7PPRjDhaZZMUHk'#'7158493029:AAHs8WxBKJxw9yV4V85L80QoyW4LGBwhYr0'
 book_group_id = -4614622677
 course_group_id = -4782813903
 
@@ -550,7 +550,7 @@ def callback_handler(call):
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "lider":
-        bot.edit_message_text(f"Lider ustoz\n\nnari: {lider_price}so'm",
+        bot.edit_message_text(f"Lider ustoz\n\nnarhi: {lider_price}so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=lider_add_to_cart())
@@ -562,25 +562,25 @@ def callback_handler(call):
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "interaktiv_5":
-        bot.edit_message_text("Samarali interaktiv metodolar:\nhar bir to‘plamda 5 tadan metod mavjud",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 5 tadan metod mavjud \nnarxi: {int5_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_5btn())
 
     elif call.data == "interaktiv_10":
-        bot.edit_message_text("Samarali interaktiv metodolar:\nhar bir to‘plamda 10 tadan metod mavjud",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 10 tadan metod mavjud \nnarxi: <s>300000</s> so'm {int10_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_10btn())
 
     elif call.data == "interaktiv_20":
-        bot.edit_message_text("Samarali interaktiv metodolar:\nhar bir to‘plamda 25 tadan metod mavjud",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 25 tadan metod mavjud \nnarxi: <s>750000</s> so'm {int20_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_25btn())
 
     elif call.data == "interaktiv_50":
-        bot.edit_message_text("Samarali interaktiv metodolar:\nto‘plamda 50 ta metod mavjud",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nto‘plamda 50 ta metod mavjud \nnarxi: <s>1500000</s> so'm {int50_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_50btn())
