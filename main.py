@@ -30,7 +30,7 @@ carts = {}
 @bot.message_handler(commands=['start'])
 def start(message):
     user_id = message.from_user.id
-    bot.send_message(user_id, "Assalomu alaykum.\nMen kitob va kurslarni sotish botiman!\n")
+    bot.send_message(user_id, "Assalomu alaykum.\nMen Dilafruz Xidoyatovaning kitob va kurslarni sotuvchi botiman!\n")
     bot.send_message(user_id, "Iltimos, ismingizni yuboring\n")
 
     bot.register_next_step_handler(message, get_name)
@@ -550,7 +550,7 @@ def callback_handler(call):
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "lider":
-        bot.edit_message_text(f"Lider ustoz\n\nnarhi: {lider_price}so'm",
+        bot.edit_message_text(f"Lider ustoz\n\nnarxi: {lider_price}so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=lider_add_to_cart())
@@ -568,19 +568,19 @@ def callback_handler(call):
                               reply_markup=interaktiv_5btn())
 
     elif call.data == "interaktiv_10":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 10 tadan metod mavjud \nnarxi: <s>300000</s> so'm {int10_price} so'm",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 10 tadan metod mavjud \nnarxi: <s>300000</s> so'm\n             {int10_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_10btn())
 
     elif call.data == "interaktiv_20":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 25 tadan metod mavjud \nnarxi: <s>750000</s> so'm {int20_price} so'm",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 25 tadan metod mavjud \nnarxi: <s>750000</s> so'm\n             {int20_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_25btn())
 
     elif call.data == "interaktiv_50":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nto‘plamda 50 ta metod mavjud \nnarxi: <s>1500000</s> so'm {int50_price} so'm",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nto‘plamda 50 ta metod mavjud \nnarxi: <s>1500000</s> so'm\n             {int50_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_50btn())
@@ -640,5 +640,6 @@ def clear_cart(call):
     user_id = call.message.chat.id
     carts[user_id] = []
     bot.reply_to(call.message, "Savat tozalandi.")
+
 
 bot.polling(non_stop=True)

@@ -1,5 +1,3 @@
-from pickletools import markobject
-
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 
 
@@ -225,11 +223,11 @@ def toplam_5ta_btn10():
 
 def interaktiv_10btn():
     markup = InlineKeyboardMarkup(row_width=1)
-    button1 = InlineKeyboardButton("1 va 2chi to‘plamlar", callback_data="toplam1_2")
-    button2 = InlineKeyboardButton("3 va 4chi to‘plamlar", callback_data="toplam3_4")
-    button3 = InlineKeyboardButton("5 va 6chi to‘plamlar", callback_data="toplam5_6")
-    button4 = InlineKeyboardButton("7 va 8chi to‘plamlar", callback_data="toplam7_8")
-    button5 = InlineKeyboardButton("9 va 10chi to‘plamlar", callback_data="toplam9_10")
+    button1 = InlineKeyboardButton("1chi to‘plam", callback_data="toplam1_2")
+    button2 = InlineKeyboardButton("2chi to‘plam", callback_data="toplam3_4")
+    button3 = InlineKeyboardButton("3chi to‘plam", callback_data="toplam5_6")
+    button4 = InlineKeyboardButton("4chi to‘plam", callback_data="toplam7_8")
+    button5 = InlineKeyboardButton("5chi to‘plam", callback_data="toplam9_10")
     button11 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
     markup.add(button1, button2, button3, button4, button5, button11)
     return markup

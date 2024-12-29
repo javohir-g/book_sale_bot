@@ -137,8 +137,8 @@ offices = {'Andijon': [
             'Oqqo\'rg\'on tuman - OQQO\'RG\'ON BTS',
             'Yangiyo\'l tumani - YANGIYO\'L BTS'
         ],
-        'Farg‘ona': [
-            'Farg`ona shahri - FARG`ONA BTS',
+        "Farg‘ona": [
+            "Farg`ona shahri - FARG`ONA BTS",
             'Farg`ona shahri - FARG`ONA PVZ',
             'Qo`qon shahar - QO`QON (CAVUM)',
             'Qo`qon shahar - QO`QON BTS',
