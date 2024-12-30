@@ -109,9 +109,9 @@ def expert_ariza():
 
 def lider_add_to_cart():
     markup = InlineKeyboardMarkup(row_width=1)
-    button1 = InlineKeyboardButton("🗑️ Savatchaga qoshish", callback_data="lider_to_cart_btn")
+    #button1 = InlineKeyboardButton("🗑️ Savatchaga qoshish", callback_data="lider_to_cart_btn")
     button2 = InlineKeyboardButton("⬅️ Orqaga", callback_data="menu_pedagogik")
-    markup.add(button1, button2)
+    markup.add(button2)
     return markup
 
 def milliy_add_to_cart():

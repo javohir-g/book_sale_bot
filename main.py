@@ -550,7 +550,7 @@ def callback_handler(call):
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "lider":
-        bot.edit_message_text(f"Lider ustoz\n\nnarxi: {lider_price}so'm",
+        bot.edit_message_text(f"Ayni damda bu kurs sotuvda emas kuzatishni davom eting",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=lider_add_to_cart())
