@@ -118,13 +118,11 @@ def handle_location(message):
     if message.chat.id in user_data and user_data[message.chat.id].get("delivery_type") == "yandex":
         user_data[message.chat.id]["location"] = message.location
 
-        payment_details = (
-            "To‘lov uchun rekvizitlar:\n"
-            "Karta raqam: <code>8600332962634972</code>\n"
-            "<b>Dilafruz Xidoyatova</b>\n")
+        payment_details = "To‘lov usulini tanlang."
         bot.send_message(message.chat.id, payment_details, reply_markup=payment())
-        time.sleep(2)
-        bot.send_message(message.chat.id,f"To‘lovni amalga oshirilgach, <b>tasdiqlash uchun skrinshot yuboring.</b>\n")
+
+        time.sleep(5)
+        bot.send_message(message.chat.id, f"To‘lovni amalga oshirilgach, <b>tasdiqlash uchun skrinshot yuboring.</b>\n")
 
 @bot.callback_query_handler(func=lambda call: call.data == "bts_delivery")
 def select_bts_region(call):
@@ -192,14 +190,12 @@ def bts_payment(call):
     office = call.data.split("_", 1)[1]
     user_data[call.message.chat.id]["office"] = office
 
-    payment_details = (
-        "To‘lov uchun rekvizitlar:\n"
-        "Karta raqam: <code>8600332962634972</code>\n"
-        "<b>Dilafruz Xidoyatova</b>\n")
+    payment_details = "To‘lov usulini tanlang."
     bot.send_message(call.message.chat.id, payment_details, reply_markup=payment())
     bot.answer_callback_query(call.id)
-    time.sleep(2)
-    bot.send_message(call.message.chat.id,f"To‘lovni amalga oshirilgach, <b>tasdiqlash uchun skrinshot yuboring.</b>\n")
+
+    time.sleep(5)
+    bot.send_message(call.message.chat.id, f"To‘lovni amalga oshirilgach, <b>tasdiqlash uchun skrinshot yuboring.</b>\n")
 
 # Обработчик нажатия на инлайн-кнопку
 @bot.callback_query_handler(func=lambda call: call.data.startswith("order_"))
@@ -241,14 +237,14 @@ def handle_payment_confirmation(message):
     markup.add(button)
 
     if "course" in user_order:
-        #courses_list = user_order['course'].split('</b> kursi')
+        courses_list = user_order['course'].replace(".", "\n")
         admin_message = (
             "#kurs\n"
             "Yangi ariza (Kurs):\n"
             f"Foydalanuvchi: <b>{name}</b>\n"
             f"Telefon: {phone_number}\n"
             f"Username: @{message.from_user.username}\n"
-            f"Kurslar:\n{user_order['course']}\n"
+            f"Kurslar:\n{courses_list}\n"
             f"Jami summa: {user_order['total']} so'm"
         )
         bot.send_photo(
@@ -321,71 +317,71 @@ def callback_course5_handler(call):
     if call.data == "toplam1":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_1, message_id=call.message.message_id, reply_markup=toplam_5ta_btn1())
     elif call.data == "toplam1_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>1chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "1chi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>1chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "1chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam2":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_2, message_id=call.message.message_id, reply_markup=toplam_5ta_btn2())
     elif call.data == "toplam2_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>2chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "2chi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>2chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "2chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam3":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_3, message_id=call.message.message_id, reply_markup=toplam_5ta_btn3())
     elif call.data == "toplam3_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>3chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "3chi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>3chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "3chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam4":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_4, message_id=call.message.message_id, reply_markup=toplam_5ta_btn4())
     elif call.data == "toplam4_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>4chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "4chi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>4chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "4chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam5":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_5, message_id=call.message.message_id, reply_markup=toplam_5ta_btn5())
     elif call.data == "toplam5_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>5chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "5hi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>5chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "5chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam6":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_6, message_id=call.message.message_id, reply_markup=toplam_5ta_btn6())
     elif call.data == "toplam6_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>6chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "6chi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>6chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "6chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam7":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_7, message_id=call.message.message_id, reply_markup=toplam_5ta_btn7())
     elif call.data == "toplam7_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>7chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "7chi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>7chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "7chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam8":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_8, message_id=call.message.message_id, reply_markup=toplam_5ta_btn8())
     elif call.data == "toplam8_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>8chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "8chi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>8chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "8chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam9":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_9, message_id=call.message.message_id, reply_markup=toplam_5ta_btn9())
     elif call.data == "toplam9_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>9chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "9chi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>9chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "9chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam10":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_10, message_id=call.message.message_id, reply_markup=toplam_5ta_btn10())
     elif call.data == "toplam10_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>10chi metodlar to‘plami</b>", int5_price)
-        bot.answer_callback_query(call.id, "10chi metodlar to‘plami savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>10chi 5ta metodlar to‘plami.</b>", int5_price)
+        bot.answer_callback_query(call.id, "10chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
 @bot.callback_query_handler(func=lambda call: call.data in [
@@ -395,36 +391,36 @@ def callback_course10_handler(call):
     if call.data == "toplam1_2":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_1_2, message_id=call.message.message_id, reply_markup=toplam_10ta_btn1())
     elif call.data == "toplam10_1_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>1chi 10 metodli to‘plam</b>", int10_price)
-        bot.answer_callback_query(call.id, "1chi 10 metodli to‘plam savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>1chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.answer_callback_query(call.id, "1chi 10ta metodli to‘plam savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam3_4":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_3_4, message_id=call.message.message_id, reply_markup=toplam_10ta_btn2())
     elif call.data == "toplam10_2_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>2chi 10 metodli to‘plam</b>", int10_price)
-        bot.answer_callback_query(call.id, "2chi 10 metodli to‘plam savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>2chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.answer_callback_query(call.id, "2chi 10ta metodli to‘plam savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam5_6":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_5_6, message_id=call.message.message_id, reply_markup=toplam_10ta_btn3())
     elif call.data == "toplam10_3_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>3chi 10 metodli to‘plam</b>", int10_price)
-        bot.answer_callback_query(call.id, "3chi 10 metodli to‘plam savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>3chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.answer_callback_query(call.id, "3chi 10ta metodli to‘plam savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam7_8":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_7_8, message_id=call.message.message_id, reply_markup=toplam_10ta_btn4())
     elif call.data == "toplam10_4_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>4chi 10 metodli to‘plam</b>", int10_price)
-        bot.answer_callback_query(call.id, "4chi 10 metodli to‘plam savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>4chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.answer_callback_query(call.id, "4chi 10ta metodli to‘plam savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam9_10":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_9_10, message_id=call.message.message_id, reply_markup=toplam_10ta_btn5())
     elif call.data == "toplam10_5_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>5chi 10 metodli to‘plam</b>", int10_price)
-        bot.answer_callback_query(call.id, "5chi 10 metodli to‘plam savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>5chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.answer_callback_query(call.id, "5chi 10ta metodli to‘plam savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
 
@@ -435,15 +431,15 @@ def callback_course25_handler(call):
     if call.data == "toplam1_25":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_1_25, message_id=call.message.message_id, reply_markup=toplam_25ta_btn1())
     elif call.data == "toplam25_1_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>1chi 25 metodli to‘plam</b>", int10_price)
-        bot.answer_callback_query(call.id, "1chi 25 metodli to‘plam savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>1chi 25ta metodli to‘plam.</b>", int10_price)
+        bot.answer_callback_query(call.id, "1chi 25ta metodli to‘plam savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam26_50":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_26_50, message_id=call.message.message_id, reply_markup=toplam_25ta_btn2())
     elif call.data == "toplam25_2_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>2chi 25 metodli to‘plam</b>", int10_price)
-        bot.answer_callback_query(call.id, "2chi 25 metodli to‘plam savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>2chi 25ta metodli to‘plam.</b>", int10_price)
+        bot.answer_callback_query(call.id, "2chi 25ta metodli to‘plam savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
 @bot.callback_query_handler(func=lambda call: call.data in [
@@ -453,7 +449,7 @@ def callback_course50_handler(call):
     if call.data == "toplam1_50":
         bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_1_50, message_id=call.message.message_id, reply_markup=toplam_50ta_btn1())
     elif call.data == "toplam50_1_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>50ta metodli to‘plam</b>", int50_price)
+        add_to_cart(call.message.chat.id, f"<b>50ta metodli to‘plam.</b>", int50_price)
         bot.answer_callback_query(call.id, "50ta metodli to‘plam savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
@@ -521,7 +517,7 @@ def callback_handler(call):
 
     elif call.data == "milliy_to_cart_btn":
         bot.answer_callback_query(call.id, "'Milliy tarbiyaning oiladagi va ta`limdagi roli' kursi savatchaga qo`shildi")
-        add_to_cart(call.message.chat.id, f"<b>Milliy tarbiyaning oiladagi va ta`limdagi roli</b> kursi", milliy_price)
+        add_to_cart(call.message.chat.id, f"<b>Milliy tarbiyaning oiladagi va ta`limdagi roli</b> kursi.", milliy_price)
         bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
@@ -533,7 +529,7 @@ def callback_handler(call):
 
     elif call.data == "maqola_to_cart_btn":
         bot.answer_callback_query(call.id, "O`z maqolangizni chop eting' kursi savatchaga qo`shildi")
-        add_to_cart(call.message.chat.id, f"<b>O`z maqolangizni chop eting</b> kursi", maqola_price)
+        add_to_cart(call.message.chat.id, f"<b>O`z maqolangizni chop eting</b> kursi.", maqola_price)
         bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
@@ -544,7 +540,7 @@ def callback_handler(call):
                               reply_markup=tajriba_add_to_cart())
 
     elif call.data == "tajriba_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>Tajribani ommalashtirish</b> kursi", tajriba_price)
+        add_to_cart(call.message.chat.id, f"<b>Tajribani ommalashtirish</b> kursi.", tajriba_price)
         bot.answer_callback_query(call.id, "'Tajribani ommalashtirish' kursi savatchaga qo`shildi")
         bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
@@ -556,7 +552,7 @@ def callback_handler(call):
                               reply_markup=lider_add_to_cart())
 
     elif call.data == "lider_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>Lider ustoz</b> kursi", lider_price)
+        add_to_cart(call.message.chat.id, f"<b>Lider ustoz</b> kursi.", lider_price)
         bot.answer_callback_query(call.id, "'Lider ustoz' kursi savatchaga qo`shildi")
         bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
@@ -568,19 +564,19 @@ def callback_handler(call):
                               reply_markup=interaktiv_5btn())
 
     elif call.data == "interaktiv_10":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 10 tadan metod mavjud \nnarxi: <s>300000</s> so'm\n             {int10_price} so'm",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 10 tadan metod mavjud \nnarxi: <s>300.000</s> so'm\n             {int10_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_10btn())
 
     elif call.data == "interaktiv_20":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 25 tadan metod mavjud \nnarxi: <s>750000</s> so'm\n             {int20_price} so'm",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 25 tadan metod mavjud \nnarxi: <s>750.000</s> so'm\n             {int20_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_25btn())
 
     elif call.data == "interaktiv_50":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nto‘plamda 50 ta metod mavjud \nnarxi: <s>1500000</s> so'm\n             {int50_price} so'm",
+        bot.edit_message_text(f"Samarali interaktiv metodolar:\nto‘plamda 50 ta metod mavjud \nnarxi: <s>1.500.000</s> so'm\n             {int50_price} so'm",
                               chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
                               reply_markup=interaktiv_50btn())
@@ -611,29 +607,36 @@ def show_cart(message):
     for item in carts[user_id]:
         all_courses += item['name']
         cart_text += f"{item['name']} - {item['price']} so'm\n"
-        total += item['price'] * item['quantity']
-    cart_text += f"\nJami: {total} so'm"
+        price1 = int(item['price'].replace(".",""))
+        total += price1
+    cart_text += f"\nJami: {total:,}".replace(",", ".") + " so'm"
 
     bot.send_message(user_id, cart_text, reply_markup=buy())
     user_data[message.chat.id] = {"course": all_courses, "total": total}
 
-@bot.callback_query_handler(func=lambda call: call.data == 'buy_cart')
+@bot.callback_query_handler(func=lambda call: call.data in ['buy_cart', 'card_number'])
 def process_puy(call):
     user_id = call.message.chat.id
-    total = 0
-    for item in carts[user_id]:
-        total += item['price'] * item['quantity']
+    if call.data == 'buy_cart':
+        total = 0
+        cart_text = ""
+        all_courses = ''
+        for item in carts[user_id]:
+            all_courses += item['name']
+            cart_text += f"{item['name']} - {item['price']} so'm\n"
+            price1 = int(item['price'].replace(".", ""))
+            total += price1
 
-    payment_details = (
-        f"\nJami: {total} so‘m\n\n"
-        "To‘lov uchun rekvizitlar:\n"
-        "Karta raqam: <code>8600332962634972</code>\n"
-        "<b>Dilafruz Xidoyatova</b>\n")
+        payment_details = "To‘lov usulini tanlang."
 
-    bot.send_message(call.message.chat.id, payment_details, reply_markup=payment())
-    time.sleep(2)
-    bot.send_message(call.message.chat.id,f"To‘lovni amalga oshirilgach, <b>tasdiqlash uchun skrinshot yuboring.</b>\n")
-    carts[user_id] = []
+        bot.send_message(call.message.chat.id, payment_details, reply_markup=payment())
+        carts[user_id] = []
+        time.sleep(5)
+        bot.send_message(call.message.chat.id, f"To‘lovni amalga oshirilgach, <b>tasdiqlash uchun skrinshot yuboring.</b>\n")
+
+    elif call.data == 'card_number':
+        bot.send_message(call.message.chat.id,"Karta raqami: <code>8600332962634972</code>\n<b>Dilafruz Xidoyatova</b>\n")
+
 
 @bot.callback_query_handler(func=lambda call: call.data =='clear_cart')
 def clear_cart(call):

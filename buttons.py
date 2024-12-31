@@ -49,10 +49,11 @@ def kitob_delivery():
 
 def payment():
     markup = InlineKeyboardMarkup(row_width=1)
-    button1 = InlineKeyboardButton("Click", url="https://indoor.click.uz/pay?id=054236&t=0&amount=10000")
+    button1 = InlineKeyboardButton("Click", url="https://indoor.click.uz/pay?id=054236&t=0")
     button2 = InlineKeyboardButton("Payme", url="https://payme.uz/fallback/merchant/?id=65200f1f5a8224b99c9a37e3")
+    button4 = InlineKeyboardButton("Karta raqami", callback_data="card_number")
     button3 = InlineKeyboardButton("⬅️ Asosiy menyu", callback_data="back_to_main")
-    markup.add(button1, button2, button3)
+    markup.add(button1, button2, button4, button3)
     return markup
 
 #---------------kurs-------------------
@@ -137,16 +138,16 @@ def tajriba_add_to_cart():
 
 def interaktiv_5btn():
     markup = InlineKeyboardMarkup(row_width=1)
-    button1 = InlineKeyboardButton("1chi to‘plam", callback_data="toplam1")
-    button2 = InlineKeyboardButton("2chi to‘plam", callback_data="toplam2")
-    button3 = InlineKeyboardButton("3chi to‘plam", callback_data="toplam3")
-    button4 = InlineKeyboardButton("4chi to‘plam", callback_data="toplam4")
-    button5 = InlineKeyboardButton("5chi to‘plam", callback_data="toplam5")
-    button6 = InlineKeyboardButton("6chi to‘plam", callback_data="toplam6")
-    button7 = InlineKeyboardButton("7chi to‘plam", callback_data="toplam7")
-    button8 = InlineKeyboardButton("8chi to‘plam", callback_data="toplam8")
-    button9 = InlineKeyboardButton("9chi to‘plam", callback_data="toplam9")
-    button10 = InlineKeyboardButton("10chi to‘plam", callback_data="toplam10")
+    button1 = InlineKeyboardButton("1 - to‘plam", callback_data="toplam1")
+    button2 = InlineKeyboardButton("2 - to‘plam", callback_data="toplam2")
+    button3 = InlineKeyboardButton("3 - to‘plam", callback_data="toplam3")
+    button4 = InlineKeyboardButton("4 - to‘plam", callback_data="toplam4")
+    button5 = InlineKeyboardButton("5 - to‘plam", callback_data="toplam5")
+    button6 = InlineKeyboardButton("6 - to‘plam", callback_data="toplam6")
+    button7 = InlineKeyboardButton("7 - to‘plam", callback_data="toplam7")
+    button8 = InlineKeyboardButton("8 - to‘plam", callback_data="toplam8")
+    button9 = InlineKeyboardButton("9 - to‘plam", callback_data="toplam9")
+    button10 = InlineKeyboardButton("10 - to‘plam", callback_data="toplam10")
     button11 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
     markup.add(button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11)
     return markup
@@ -223,11 +224,11 @@ def toplam_5ta_btn10():
 
 def interaktiv_10btn():
     markup = InlineKeyboardMarkup(row_width=1)
-    button1 = InlineKeyboardButton("1chi to‘plam", callback_data="toplam1_2")
-    button2 = InlineKeyboardButton("2chi to‘plam", callback_data="toplam3_4")
-    button3 = InlineKeyboardButton("3chi to‘plam", callback_data="toplam5_6")
-    button4 = InlineKeyboardButton("4chi to‘plam", callback_data="toplam7_8")
-    button5 = InlineKeyboardButton("5chi to‘plam", callback_data="toplam9_10")
+    button1 = InlineKeyboardButton("1 - to‘plam", callback_data="toplam1_2")
+    button2 = InlineKeyboardButton("2 - to‘plam", callback_data="toplam3_4")
+    button3 = InlineKeyboardButton("3 - to‘plam", callback_data="toplam5_6")
+    button4 = InlineKeyboardButton("4 - to‘plam", callback_data="toplam7_8")
+    button5 = InlineKeyboardButton("5 - to‘plam", callback_data="toplam9_10")
     button11 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
     markup.add(button1, button2, button3, button4, button5, button11)
     return markup
@@ -270,8 +271,8 @@ def toplam_10ta_btn5():
 
 def interaktiv_25btn():
     markup = InlineKeyboardMarkup(row_width=1)
-    button1 = InlineKeyboardButton("1 chi to‘plamlar", callback_data="toplam1_25")
-    button2 = InlineKeyboardButton("2 chi to‘plamlar", callback_data="toplam26_50")
+    button1 = InlineKeyboardButton("1 - to‘plamlar", callback_data="toplam1_25")
+    button2 = InlineKeyboardButton("2 - to‘plamlar", callback_data="toplam26_50")
     button11 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
     markup.add(button1, button2, button11)
     return markup
@@ -293,7 +294,7 @@ def toplam_25ta_btn2():
 
 def interaktiv_50btn():
     markup = InlineKeyboardMarkup(row_width=1)
-    button1 = InlineKeyboardButton("10ta to‘plamlar", callback_data="toplam1_50")
+    button1 = InlineKeyboardButton("1 - to‘plamlar", callback_data="toplam1_50")
     button11 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
     markup.add(button1, button11)
     return markup
