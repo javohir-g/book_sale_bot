@@ -635,7 +635,7 @@ def process_puy(call):
         bot.send_message(call.message.chat.id, f"To‘lovni amalga oshirilgach, <b>tasdiqlash uchun skrinshot yuboring.</b>\n")
 
     elif call.data == 'card_number':
-        bot.send_message(call.message.chat.id,"Karta raqami: <code>8600332962634972</code>\n<b>Dilafruz Xidoyatova</b>\n")
+        bot.send_message(call.message.chat.id,"Nusxa olish uchun katak raqamini ustiga bosing\nKarta raqami: <code>8600332962634972</code>\n<b>Dilafruz Xidoyatova</b>\n")
 
 
 @bot.callback_query_handler(func=lambda call: call.data =='clear_cart')

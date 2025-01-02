@@ -294,7 +294,7 @@ def toplam_25ta_btn2():
 
 def interaktiv_50btn():
     markup = InlineKeyboardMarkup(row_width=1)
-    button1 = InlineKeyboardButton("1 - to‘plamlar", callback_data="toplam1_50")
+    button1 = InlineKeyboardButton("1 - to‘plam", callback_data="toplam1_50")
     button11 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_to_int")
     markup.add(button1, button11)
     return markup
