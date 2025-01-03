@@ -61,9 +61,51 @@ QR kod orqali metodlardan foydalanilgan darslarning videolari ham berilgan. Shun
 Kitob narxi 183.000 so’m
 """
 
-expert_text = "...."
+expert_text = ("<b>Ekspertlar uchun metodologik xizmat</b>\n\n"
+               ""
+               "Agar siz o‘z tajribangiz asosida mualliflik onlayn yoki offlayn kurslarini yaratmoqchi bo‘lsangiz, metodologik xizmatimiz aynan siz uchun!\n\n"
+               ""
+               "<b>Xizmat doirasida biz sizga yordam beramiz:</b>\n"
+               " • Kurs mavzusiga asosan har bir darsni rejalashtirish va tizimlashtirish.\n"
+               " • Dars uchun kerakli taqdimotlar va qo‘llanmalarni ishlab chiqish.\n"
+               " • Blok yoki modullarga asoslangan kurs tuzilmasini yaratish.\n"
+               " • Har bir dars uchun natijaviylikka yo‘naltirilgan amaliy topshiriqlar va uyga vazifalarni ishlab chiqish.\n"
+               " • Tayyor kurs uchun foydalaniladigan metodik qo‘llanmalar tayyorlash.\n\n"
+               "<b>Xizmat qanday ko‘rsatiladi?</b>\n"
+               "Metodologik konsultatsiya offlayn shaklda, belgilangan dars soatlariga muvofiq amalga oshiriladi.\n"
+               " • Odatda kurning dars soatlarining hajmi va metodologik konsultatsiya hajmi 1-2 taga farq qilishi mumkin.\n"
+               " • Har bir konsultatsiya o‘rtacha 2 soat davom etadi.\n\n"
+               "Agar sizga ushbu xizmat qiziq bo‘lsa, Siz bilan bog‘lanish uchun ma’lumotlaringizni qoldiring. Tez orada siz bilan aloqaga chiqamiz!")
 
-shogirt_text = "...."
+shogirt_text = """
+<b>Metodologiya bo‘yicha 2 oylik professional kurs</b>
+
+<b>Maqsad:</b>
+Ekspertlar, infobiznes (prodyuserlik jamoalari) agentliklari va ekspertlarga onlayn va oflayn kurslarni samarali, natijaviy va zamonaviy tashkil etishda yordam beradigan metodolog mutaxassislarni tayyorlash.
+
+<b>Kimlar uchun:</b>
+• Pedagog, ekspert 3-5 yillik, infobiznesda kamida 2 yillik tajribaga ega mutaxassislar.
+• Infoproduserlik jamoalarida ishlagan yoki shu sohalarga qiziqqanlar.
+
+<b>Kursda sizga o‘rgatiladi:</b>
+• Kurslar uchun strategik reja ishlab chiqish.
+• Kurs mazmunini to‘g‘ri tuzish va natijaga yo‘naltirish.
+• Amaliy topshiriqlarni ishlab chiqish va kurs qo'llanmasini ishlab chiqish ilmi.
+• Ekspertlar bilan birga ishlash ko‘nikmasi.
+• Onlayn va oflayn kurslarni samarali yo‘lga qo‘yish.
+• Interaktiv metodlar, texnikalar va gamefikatsiyalar bilan tanishish.
+
+<b>Shartlar:</b>
+• Kursga qabul maxsus suhbat asosida amalga oshiriladi.
+
+<b>Kurs davomida:</b>
+• Nazariya + real loyihalar ustida ishlash tajribalari bilan bo'lishsish.
+• 25 yillik tajriba asosidagi xalqaro ekspert maslahati va individual ishlash.
+• O‘qish davomiyligi: 2 oy.
+
+<b>Joylar soni cheklangan!</b>
+Ro‘yxatdan o‘ting va joyingizni band qiling!
+"""
 
 milly_text = """<b>“Milliy tarbiyaning ahamiyati va ta’limdagi roli”</b> deb nomlangan video dars o‘ziga xos yondashuv orqali muammoli o‘quvchilar bilan ishlash texnikalari hamda o’qivchilar bilan ishlashdagi psixologik jihatlarni o‘rganishga yordam beradi. Ushbu dars orqali siz o‘quvchilar bilan muvaffaqiyatli ishlashda kerakli ko‘nikmalarni shakllantirishingiz mumkin. Bu dars 1 ta videodan tashkil topgan.
 
