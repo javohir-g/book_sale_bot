@@ -75,7 +75,8 @@ offices = {'Andijon': [
             'Pastdarg‘om tumani - PASTDARG\'OM BTS',
             'Tayloq tumani - TOYLOQ BTS',
             'Narpay tumani - NARPAY BTS',
-            "Nurobod tumani - NUROBOD BTS"
+            "Nurobod tumani - NUROBOD BTS",
+            "Ishtixon tumani - ISHTIXON BTS"
         ],
         'Sirdaryo': [
             'Sirdaryo tumani - BAXT BTS',
@@ -92,43 +93,6 @@ offices = {'Andijon': [
             "Sherobod tumani - SHEROBOD BTS",
             "Sho'rchi tuman - SHO'RCHI BTS",
             "Sariosiyo tuman - SARIOSIYO BTS"
-        ],
-        'Toshkent': [
-            'Yakkasaroy tumani - YAKKASAROY BTS',
-            'Yakkasaroy tumani - QUSHBEGI (SKLAD)',
-            'Yakkasaroy tumani - YAKKASAROY 2 BTS',
-            'Yakkasaroy tumani - QUSHBEGI BTS (PVZ)',
-            'Yakkasaroy tumani - JANUBIY VOKZAL',
-            'Uchtepa tumani - UCHTEPA BTS',
-            'Uchtepa tumani - O’RIKZOR1 BTS',
-            'Uchtepa tumani - FARHOD BTS',
-            'Uchtepa tumani - O’RIKZOR2 BTS',
-            'Shayxontohur tumani - SHAYXONTOHUR BTS',
-            'Shayxontohur tumani - MALIKA BOZOR BTS',
-            'Shayxontohur tumani - HUVAYDO BTS',
-            'Olmazor tumani - OLMAZOR BTS',
-            'Olmazor tumani - QORASAROY BTS',
-            'Olmazor tumani - ESKI SHAHAR BTS',
-            'Olmazor tumani - QORAQAMISH BTS',
-            'Sergeli tumani - SERGELI BTS',
-            'Yunusobod tumani - YUNUSOBOD (SHAXRISTON)',
-            'Yunusobod tumani - YUNUSOBOD (UNIVERSAM)',
-            'Yunusobod tumani - OLOY BTS',
-            'Mirobod tumani - MIROBOD BTS',
-            'Mirobod tumani - SHIMOLIY VOKZAL',
-            "M.Ulug'bek tumani - MAKSIM GORKI BTS",
-            "M.Ulug'bek tumani - PARKENT BTS",
-            "M.Ulug'bek tumani - TTZ BTS",
-            'Yashnobod tumani - QO\'YLIQ BTS',
-            'Yashnobod tumani - KADISHEVA BTS',
-            'Chilonzor tumani - OQTEPA BTS',
-            'Chilonzor tumani - ABU SAXIY',
-            'Chilonzor tumani - BEK BARAKA BTS',
-            'Chilonzor tumani - CHILONZOR BTS',
-            'Chilonzor tumani - CHO\'PONOTA BTS',
-            'Chilonzor tumani - QATORTOL BTS',
-            'Chilonzor tumani - ALGORITM BTS',
-            'Yangihayot tumani - TASHKENT INDEX'
         ],
         'Toshkent viloyatlari': [
             'Chirchiq shahri - CHIRCHIQ BTS',
@@ -154,16 +118,12 @@ offices = {'Andijon': [
         'Xorazm': [
             'Urganch shahar - URGENCH BTS',
             "Urganch shahar - URGANCH 4-MKR BTS",
-            'Xiva shahar - URGANCH 4-MKR BTS',
+            'Xiva shahar - XIVA',
             "Tuproqqal'a tuman - TUPROQQAL'A BTS",
             "Xonka tuman - XONQA BTS",
-            "Gurlan tuman - GURLAN BTS",
-            'Xiva shahar - XIVA'
+            "Gurlan tuman - GURLAN BTS"
         ],
         'Qoraqalpog‘iston Respublikasi': [
-            "Tuproqqal'a tuman - TUPROQQAL'A BTS",
-            'Xonka tuman - XONQA BTS',
-            'Gurlan tuman - GURLAN BTS',
             'Nukus shahri - NUKUS BTS',
             'Nukus shahri - NUKUS 26-MKR',
             "Qo'ng'irot tuman - QO'NG'IROT BTS",
@@ -173,6 +133,42 @@ offices = {'Andijon': [
 
         }
 
-
+a = {'Toshkent': [
+    'Yakkasaroy tumani - YAKKASAROY BTS',
+    'Yakkasaroy tumani - QUSHBEGI (SKLAD)',
+    'Yakkasaroy tumani - YAKKASAROY 2 BTS',
+    'Yakkasaroy tumani - QUSHBEGI BTS (PVZ)',
+    'Yakkasaroy tumani - JANUBIY VOKZAL',
+    'Uchtepa tumani - UCHTEPA BTS',
+    'Uchtepa tumani - O’RIKZOR1 BTS',
+    'Uchtepa tumani - FARHOD BTS',
+    'Uchtepa tumani - O’RIKZOR2 BTS',
+    'Shayxontohur tumani - SHAYXONTOHUR BTS',
+    'Shayxontohur tumani - MALIKA BOZOR BTS',
+    'Shayxontohur tumani - HUVAYDO BTS',
+    'Olmazor tumani - OLMAZOR BTS',
+    'Olmazor tumani - QORASAROY BTS',
+    'Olmazor tumani - ESKI SHAHAR BTS',
+    'Olmazor tumani - QORAQAMISH BTS',
+    'Sergeli tumani - SERGELI BTS',
+    'Yunusobod tumani - YUNUSOBOD (SHAXRISTON)',
+    'Yunusobod tumani - YUNUSOBOD (UNIVERSAM)',
+    'Yunusobod tumani - OLOY BTS',
+    'Mirobod tumani - MIROBOD BTS',
+    'Mirobod tumani - SHIMOLIY VOKZAL',
+    "M.Ulug'bek tumani - MAKSIM GORKI BTS",
+    "M.Ulug'bek tumani - PARKENT BTS",
+    "M.Ulug'bek tumani - TTZ BTS",
+    'Yashnobod tumani - QO\'YLIQ BTS',
+    'Yashnobod tumani - KADISHEVA BTS',
+    'Chilonzor tumani - OQTEPA BTS',
+    'Chilonzor tumani - ABU SAXIY',
+    'Chilonzor tumani - BEK BARAKA BTS',
+    'Chilonzor tumani - CHILONZOR BTS',
+    'Chilonzor tumani - CHO\'PONOTA BTS',
+    'Chilonzor tumani - QATORTOL BTS',
+    'Chilonzor tumani - ALGORITM BTS',
+    'Yangihayot tumani - TASHKENT INDEX'
+]}
 
 
