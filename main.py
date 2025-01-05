@@ -598,7 +598,7 @@ def add_to_cart(user_id, item_name, price, quantity=1):
 def show_cart(message):
     user_id = message.chat.id
     if user_id not in carts or not carts[user_id]:
-        bot.reply_to(message, "Savatingiz bo'sh.")
+        bot.send_message(message.chat.id, "Savatingiz bo'sh.", reply_markup=main_menu())
         return
 
     cart_text = "Siz tanlagan kurslar:\n\n"
