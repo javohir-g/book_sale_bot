@@ -16,8 +16,8 @@ updater_thread.start()
 
 
 BOT_TOKEN = '7158493029:AAHs8WxBKJxw9yV4V85L80QoyW4LGBwhYr0'
-book_group_id = -4614622677
-course_group_id = -4782813903
+book_group_id = -1002446300095
+course_group_id = -1002481066762
 
 bot = telebot.TeleBot(BOT_TOKEN, parse_mode="HTML")
 
