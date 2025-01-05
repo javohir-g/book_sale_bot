@@ -5,7 +5,7 @@ import time
 
 def update_website():
     try:
-        response = requests.get("https://book-sale-bot-1.onrender.com")
+        response = requests.get("https://book-sale-bot-ap5x.onrender.com")
         if response.status_code == 200:
             print("Сайт успешно обновлен")
         else:
