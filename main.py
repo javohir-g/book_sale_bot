@@ -1,6 +1,8 @@
 import time
 
 import telebot
+from telebot.types import InputMediaPhoto
+
 import database as db
 from buttons import *
 from bts_offices import offices
@@ -308,120 +310,213 @@ def send_to_admin(message, course_name):
 @bot.message_handler(func=lambda message: message.text == "💻 Kurslar")
 def kurs_menu(message):
     user_id = message.from_user.id
-    bot.send_message(user_id, "Mavjud kurslar:", reply_markup=kurs_btns())
+    with open('photos/21.png', 'rb') as photo:
+        bot.send_photo(user_id, photo, reply_markup=kurs_btns())
 
 @bot.callback_query_handler(func=lambda call: call.data in [
     "toplam1", "toplam2", "toplam3", "toplam4", "toplam5", "toplam6", "toplam7", "toplam8", "toplam9", "toplam10",
     "toplam1_to_cart_btn", "toplam2_to_cart_btn", "toplam3_to_cart_btn", "toplam4_to_cart_btn", "toplam5_to_cart_btn", "toplam6_to_cart_btn", "toplam7_to_cart_btn", "toplam8_to_cart_btn", "toplam9_to_cart_btn", "toplam10_to_cart_btn" ])
 def callback_course5_handler(call):
+    from telebot.types import InputMediaPhoto
     if call.data == "toplam1":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_1, message_id=call.message.message_id, reply_markup=toplam_5ta_btn1())
+        photo = open("photos/24.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn1()
+        )
     elif call.data == "toplam1_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>1chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "1chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam2":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_2, message_id=call.message.message_id, reply_markup=toplam_5ta_btn2())
+        photo = open("photos/25.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn2()
+        )
     elif call.data == "toplam2_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>2chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "2chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam3":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_3, message_id=call.message.message_id, reply_markup=toplam_5ta_btn3())
+        photo = open("photos/26.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn3()
+        )
     elif call.data == "toplam3_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>3chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "3chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam4":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_4, message_id=call.message.message_id, reply_markup=toplam_5ta_btn4())
+        photo = open("photos/27.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn4()
+        )
     elif call.data == "toplam4_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>4chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "4chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam5":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_5, message_id=call.message.message_id, reply_markup=toplam_5ta_btn5())
+        photo = open("photos/28.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn5()
+        )
     elif call.data == "toplam5_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>5chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "5chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam6":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_6, message_id=call.message.message_id, reply_markup=toplam_5ta_btn6())
+        photo = open("photos/29.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn6()
+        )
     elif call.data == "toplam6_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>6chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "6chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam7":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_7, message_id=call.message.message_id, reply_markup=toplam_5ta_btn7())
+        photo = open("photos/30.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn7()
+        )
     elif call.data == "toplam7_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>7chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "7chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam8":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_8, message_id=call.message.message_id, reply_markup=toplam_5ta_btn8())
+        photo = open("photos/31.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn8()
+        )
     elif call.data == "toplam8_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>8chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "8chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam9":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_9, message_id=call.message.message_id, reply_markup=toplam_5ta_btn9())
+        photo = open("photos/32.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn9()
+        )
     elif call.data == "toplam9_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>9chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "9chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
 
     elif call.data == "toplam10":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_10, message_id=call.message.message_id, reply_markup=toplam_5ta_btn10())
+        photo = open("photos/33.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_5ta_btn10()
+        )
     elif call.data == "toplam10_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>10chi 5ta metodlar to‘plami.</b>", int5_price)
         bot.answer_callback_query(call.id, "10chi 5ta metodlar to‘plami savatchaga qo`shildi")
         bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+
 
 @bot.callback_query_handler(func=lambda call: call.data in [
     "toplam1_2", "toplam3_4", "toplam5_6", "toplam7_8", "toplam9_10",
     "toplam10_1_to_cart_btn", "toplam10_2_to_cart_btn", "toplam10_3_to_cart_btn", "toplam10_4_to_cart_btn", "toplam10_5_to_cart_btn"])
 def callback_course10_handler(call):
     if call.data == "toplam1_2":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_1_2, message_id=call.message.message_id, reply_markup=toplam_10ta_btn1())
+        photo = open("photos/35.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_10ta_btn1())
+
     elif call.data == "toplam10_1_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>1chi 10ta metodli to‘plam.</b>", int10_price)
         bot.answer_callback_query(call.id, "1chi 10ta metodli to‘plam savatchaga qo`shildi")
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        add_to_cart(call.message.chat.id, f"<b>1chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.send_message(call.message.chat.id, "<b>1chi 10ta metodli to‘plam</b> savatchaga qo`shildi", reply_markup=main_menu())
 
     elif call.data == "toplam3_4":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_3_4, message_id=call.message.message_id, reply_markup=toplam_10ta_btn2())
+        photo = open("photos/36.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_10ta_btn2())
+
     elif call.data == "toplam10_2_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>2chi 10ta metodli to‘plam.</b>", int10_price)
         bot.answer_callback_query(call.id, "2chi 10ta metodli to‘plam savatchaga qo`shildi")
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        add_to_cart(call.message.chat.id, f"<b>2chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.send_message(call.message.chat.id, "<b>2chi 10ta metodli to‘plam</b> savatchaga qo`shildi", reply_markup=main_menu())
 
     elif call.data == "toplam5_6":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_5_6, message_id=call.message.message_id, reply_markup=toplam_10ta_btn3())
+        photo = open("photos/37.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_10ta_btn3())
+
     elif call.data == "toplam10_3_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>3chi 10ta metodli to‘plam.</b>", int10_price)
         bot.answer_callback_query(call.id, "3chi 10ta metodli to‘plam savatchaga qo`shildi")
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        add_to_cart(call.message.chat.id, f"<b>3chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.send_message(call.message.chat.id, "<b>3chi 10ta metodli to‘plам</b> savatchaga qo`shилди", reply_markup=main_menu())
 
     elif call.data == "toplam7_8":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_7_8, message_id=call.message.message_id, reply_markup=toplam_10ta_btn4())
+        photo = open("photos/38.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_10ta_btn4())
+
     elif call.data == "toplam10_4_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>4chi 10ta metodli to‘plam.</b>", int10_price)
-        bot.answer_callback_query(call.id, "4chi 10ta metodli to‘plam savatchaga qo`shildi")
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        bot.answer_callback_query(call.id, "4chi 10ta metodli to‘plam savatchaga qo`shилди")
+        add_to_cart(call.message.chat.id, f"<b>4chi 10ta методли to‘plам.</b>", int10_price)
+        bot.send_message(call.message.chat.id, "<b>4chi 10ta методли to‘plam</b> savatchaga qo`шилди", reply_markup=main_menu())
 
     elif call.data == "toplam9_10":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_9_10, message_id=call.message.message_id, reply_markup=toplam_10ta_btn5())
+        photo = open("photos/39.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_10ta_btn5())
+
     elif call.data == "toplam10_5_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>5chi 10ta metodli to‘plam.</b>", int10_price)
-        bot.answer_callback_query(call.id, "5chi 10ta metodli to‘plam savatchaga qo`shildi")
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        bot.answer_callback_query(call.id, "5chi 10ta методли to‘plам savatchaga qo`шилди")
+        add_to_cart(call.message.chat.id, f"<b>5chi 10ta методли to‘plам.</b>", int10_price)
+        bot.send_message(call.message.chat.id, "<b>5chi 10та методли to‘plam</b> savatchaga qo`шилди", reply_markup=main_menu())
 
 
 @bot.callback_query_handler(func=lambda call: call.data in [
@@ -429,25 +524,39 @@ def callback_course10_handler(call):
     "toplam25_1_to_cart_btn", "toplam25_2_to_cart_btn"])
 def callback_course25_handler(call):
     if call.data == "toplam1_25":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_1_25, message_id=call.message.message_id, reply_markup=toplam_25ta_btn1())
+        photo = open("photos/41.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_25ta_btn1())
+
     elif call.data == "toplam25_1_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>1chi 25ta metodli to‘plam.</b>", int10_price)
         bot.answer_callback_query(call.id, "1chi 25ta metodli to‘plam savatchaga qo`shildi")
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        add_to_cart(call.message.chat.id, f"<b>1chi 25ta metodli to‘plam.</b>", int20_price)
+        bot.send_message(call.message.chat.id, "<b>1chi 25ta metodli to‘plam</b> savatchaga qo`shildi", reply_markup=main_menu())
 
     elif call.data == "toplam26_50":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_26_50, message_id=call.message.message_id, reply_markup=toplam_25ta_btn2())
+        photo = open("photos/42.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=toplam_25ta_btn2())
+
     elif call.data == "toplam25_2_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>2chi 25ta metodli to‘plam.</b>", int10_price)
         bot.answer_callback_query(call.id, "2chi 25ta metodli to‘plam savatchaga qo`shildi")
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        add_to_cart(call.message.chat.id, f"<b>2chi 25ta metodli to‘plam.</b>", int20_price)
+        bot.send_message(call.message.chat.id, "<b>2chi 25ta metodli to‘plam</b> savatchaga qo`shildi", reply_markup=main_menu())
+
 
 @bot.callback_query_handler(func=lambda call: call.data in [
     "toplam1_50",
     "toplam50_1_to_cart_btn"])
 def callback_course50_handler(call):
     if call.data == "toplam1_50":
-        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_1_50, message_id=call.message.message_id, reply_markup=toplam_50ta_btn1())
+        bot.edit_message_text(chat_id=call.message.chat.id, text=info_toplam_1_50, message_id=call.message.message_id)
+
     elif call.data == "toplam50_1_to_cart_btn":
         add_to_cart(call.message.chat.id, f"<b>50ta metodli to‘plam.</b>", int50_price)
         bot.answer_callback_query(call.id, "50ta metodli to‘plam savatchaga qo`shildi")
@@ -461,46 +570,57 @@ def callback_course50_handler(call):
     "milliy_to_cart_btn", "tajriba_to_cart_btn", "maqola_to_cart_btn", "lider_to_cart_btn", "shogirt_ariza_btn", "expert_ariza_btn"])
 def callback_handler(call):
     if call.data == "menu_interaktiv":
-        bot.edit_message_text(
-            text = int_menu,
-            chat_id=call.message.chat.id,
-            message_id=call.message.message_id,
-            reply_markup=interaktiv_btns())
+        photo = open("photos/22.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id = call.message.chat.id,
+            message_id = call.message.message_id,
+            reply_markup = interaktiv_btns())
 
     elif call.data == "menu_pedagogik":
-        bot.edit_message_text("Pedagogik kurslardan birini tanlang:",
+        photo = open("photos/44.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
             chat_id=call.message.chat.id,
             message_id=call.message.message_id,
             reply_markup=pedagogik_btns())
 
     elif call.data == "kurs_ekspert":
-        bot.edit_message_text(text=expert_text,
-                              chat_id=call.message.chat.id,
-                              message_id=call.message.message_id,
-                              reply_markup=expert_ariza())
+        photo = open("photos/49.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=expert_ariza())
 
     elif call.data == "expert_ariza_btn":
         send_to_admin(call.message, "Ekspertlar uchun metodologik xizmat")
         bot.send_message(call.message.chat.id,"Sizning ma'lumotlaringiz adminga yuborildi!", reply_markup=main_menu())
 
     elif call.data == "kurs_shogirt":
-        bot.edit_message_text(text=shogirt_text,
-                            chat_id=call.message.chat.id,
-                            message_id=call.message.message_id,
-                            reply_markup=shogirt_ariza())
+        photo = open("photos/50.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=shogirt_ariza())
 
     elif call.data == "shogirt_ariza_btn":
         send_to_admin(call.message, "Shogirtlar uchun metodologik kurs")
         bot.send_message(call.message.chat.id,"Sizning ma'lumotlaringiz adminga yuborildi!", reply_markup=main_menu())
 
     elif call.data == "back_kurs":
-        bot.edit_message_text("Mavjud kurslar:",
+        photo = open("photos/21.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
             chat_id=call.message.chat.id,
             message_id=call.message.message_id,
             reply_markup=kurs_btns())
 
     elif call.data == "back_to_int":
-        bot.edit_message_text("Mavjud kurslar:",
+        photo = open("photos/22.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
             chat_id=call.message.chat.id,
             message_id=call.message.message_id,
             reply_markup=interaktiv_btns())
@@ -510,76 +630,99 @@ def callback_handler(call):
 
 
     elif call.data == "milliy":
-        bot.edit_message_text(f"{milly_text} {milliy_price}so'm",
-                              chat_id=call.message.chat.id,
-                              message_id=call.message.message_id,
-                              reply_markup=milliy_add_to_cart())
+        photo = open("photos/45.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=milliy_add_to_cart())
 
     elif call.data == "milliy_to_cart_btn":
         bot.answer_callback_query(call.id, "'Milliy tarbiyaning oiladagi va ta`limdagi roli' kursi savatchaga qo`shildi")
         add_to_cart(call.message.chat.id, f"<b>Milliy tarbiyaning oiladagi va ta`limdagi roli</b> kursi.", milliy_price)
         bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        bot.send_message(call.message.chat.id, "<b>'Milliy tarbiyaning oiladagi va ta`limdagi roli'</b> kursi savatchaga qo`shildi", reply_markup=main_menu())
+
 
     elif call.data == "maqola":
-        bot.edit_message_text(f"{maqola_text} {maqola_price}so'm",
-                              chat_id=call.message.chat.id,
-                              message_id=call.message.message_id,
-                              reply_markup=maqola_add_to_cart())
+        photo = open("photos/46.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=maqola_add_to_cart())
 
     elif call.data == "maqola_to_cart_btn":
-        bot.answer_callback_query(call.id, "O`z maqolangizni chop eting' kursi savatchaga qo`shildi")
+        bot.answer_callback_query(call.id, "'O`z maqolangizni chop eting' kursi savatchaga qo`shildi")
         add_to_cart(call.message.chat.id, f"<b>O`z maqolangizni chop eting</b> kursi.", maqola_price)
         bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        bot.send_message(call.message.chat.id, "<b>'O`z maqolangizni chop eting'</b> kursi savatchaga qo`shildi", reply_markup=main_menu())
 
     elif call.data == "tajriba":
-        bot.edit_message_text(f"{tajriba_text} {tajriba_price}so'm",
-                              chat_id=call.message.chat.id,
-                              message_id=call.message.message_id,
-                              reply_markup=tajriba_add_to_cart())
+        photo = open("photos/47.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=tajriba_add_to_cart())
 
     elif call.data == "tajriba_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>Tajribani ommalashtirish</b> kursi.", tajriba_price)
         bot.answer_callback_query(call.id, "'Tajribani ommalashtirish' kursi savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>Tajribani ommalashtirish</b> kursi.", tajriba_price)
         bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        bot.send_message(call.message.chat.id, "<b>'Tajribani ommalashtirish'</b> kursi savatchaga qo`shildi",
+                         reply_markup=main_menu())
 
     elif call.data == "lider":
-        bot.edit_message_text(f"Ayni damda bu kurs sotuvda emas, kuzatishni davom eting",
-                              chat_id=call.message.chat.id,
-                              message_id=call.message.message_id,
-                              reply_markup=lider_add_to_cart())
+        photo = open("photos/48.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=lider_add_to_cart())
 
     elif call.data == "lider_to_cart_btn":
-        add_to_cart(call.message.chat.id, f"<b>Lider ustoz</b> kursi.", lider_price)
         bot.answer_callback_query(call.id, "'Lider ustoz' kursi savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>Lider ustoz</b> kursi.", lider_price)
         bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-        bot.send_message(call.message.chat.id, "Asosiy menyu", reply_markup=main_menu())
+        bot.send_message(call.message.chat.id, "<b>'Lider ustoz'</b> kursi savatchaga qo`shildi",
+                         reply_markup=main_menu())
+
+
+
 
     elif call.data == "interaktiv_5":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 5 tadan metod mavjud \nnarxi: {int5_price} so'm",
-                              chat_id=call.message.chat.id,
-                              message_id=call.message.message_id,
-                              reply_markup=interaktiv_5btn())
+        photo = open("photos/23.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=interaktiv_5btn())
 
     elif call.data == "interaktiv_10":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 10 tadan metod mavjud \nnarxi: <s>300.000</s> so'm\n             {int10_price} so'm",
-                              chat_id=call.message.chat.id,
-                              message_id=call.message.message_id,
-                              reply_markup=interaktiv_10btn())
+        photo = open("photos/34.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=interaktiv_10btn())
 
     elif call.data == "interaktiv_20":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nhar bir to‘plamda 25 tadan metod mavjud \nnarxi: <s>750.000</s> so'm\n             {int20_price} so'm",
-                              chat_id=call.message.chat.id,
-                              message_id=call.message.message_id,
-                              reply_markup=interaktiv_25btn())
+        photo = open("photos/40.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=interaktiv_25btn())
 
     elif call.data == "interaktiv_50":
-        bot.edit_message_text(f"Samarali interaktiv metodolar:\nto‘plamda 50 ta metod mavjud \nnarxi: <s>1.500.000</s> so'm\n             {int50_price} so'm",
-                              chat_id=call.message.chat.id,
-                              message_id=call.message.message_id,
-                              reply_markup=interaktiv_50btn())
+        photo = open("photos/43.png", "rb")
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=interaktiv_50btn())
+
 # Функция для добавления товара в корзину
 def add_to_cart(user_id, item_name, price, quantity=1):
     if user_id not in carts:
