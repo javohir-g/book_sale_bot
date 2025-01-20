@@ -1,3 +1,4 @@
+import threading
 import time
 
 import telebot
@@ -25,17 +26,27 @@ bot = telebot.TeleBot(BOT_TOKEN, parse_mode="HTML")
 
 
 user_data = {}
+
 user_selected_courses = {}
 carts = {}
 
+DELETE_VIDEO_TIME = 300  # 5 минут
+REMINDER_INTERVAL = 30  # 1 минута
+
+YOUTUBE_VIDEO_LINK = "https://youtu.be/YOUR_VIDEO_ID"  # Ваша ссылка на видео
+FILE_PATH = "kurs_prezentatsiya.pdf"  # Путь к файлу для отправки
+
+
+
+
+CHANNEL_USERNAME = "@dilafruz_xidoyatova"
 
 @bot.message_handler(commands=['start'])
 def start(message):
     user_id = message.from_user.id
-    bot.send_message(user_id, "Assalomu alaykum.\nMen Dilafruz Xidoyatovaning kitob va kurslarni sotuvchi botiman!\n")
-    bot.send_message(user_id, "Iltimos, ismingizni yuboring\n")
-
-    bot.register_next_step_handler(message, get_name)
+    with open("photos/original-10e802655408a32655ad03089a7208b0.mp4", "rb") as video:
+        bot.send_video(user_id, video=video, caption="Assalomu alaykum.\nMen Dilafruz Xidoyatovaning kitob va kurslarni sotuvchi botiman!")
+    bot.send_message(user_id, "Davom etish uchun kanalimizga obuna bo‘ling", reply_markup=chanal_link())
 
 def get_name(message):
     user_id = message.from_user.id
@@ -49,12 +60,32 @@ def contact_handler(message, name):
     if message.contact:
         phone_number = message.contact.phone_number
         bot.send_message(user_id, "Tizimda muvaffaqiyatli ro'yxatdan o'tdingiz!")
-        bot.send_message(user_id, "pastdagi tugmalar orqali harakatni tanlang", reply_markup=main_menu())
         db.add_user(name, phone_number, user_id)
+        with open("photos/original-10e802655408a32655ad03089a7208b0.mp4", "rb") as video:
+            bot.send_video(user_id, video=video, caption="Botdan foydalanish bo‘yicha video qo‘llanma", reply_markup=main_menu_and_course())
     else:
         bot.send_message(user_id, "Raqamingizni pastdagi tugma orqali yuboring",
                          reply_markup=phone_button_uz())
         bot.register_next_step_handler(message, contact_handler, name)
+
+@bot.callback_query_handler(func=lambda call: call.data == "check_subscription")
+def check_subscription(call):
+    user_id = call.from_user.id
+    try:
+        # Проверяем статус пользователя в канале
+        status = bot.get_chat_member(CHANNEL_USERNAME, user_id).status
+        if status in ["member", "administrator", "creator"]:
+            bot.answer_callback_query(call.id, "Siz kanalga obuna bo‘ldingiz! ✅")
+            bot.send_message(call.message.chat.id, "Obunangiz uchun rahmat! Endi botdan foydalanishingiz mumkin. 😊")
+            bot.send_message(user_id, "Iltimos, ismingizni yuboring\n")
+            bot.register_next_step_handler(call.message, get_name)
+        else:
+            bot.answer_callback_query(call.id, "Kanalga hali obuna bo‘lmagansiz! ❌")
+            bot.send_message(call.message.chat.id, "Iltimos, kanalga obuna bo‘ling va tugmani yana bir marta bosing")
+    except Exception as e:
+        bot.answer_callback_query(call.id, "Произошла ошибка. Пожалуйста, попробуйте позже.")
+        bot.send_message(call.message.chat.id, f"Ошибка: {e}")
+
 
 #----------kitob----------------
 @bot.message_handler(func=lambda message: message.text == "📚 Kitob")
@@ -163,7 +194,7 @@ def select_bts_office(call):
         markup.add(button)
 
     # Добавляем кнопку "Назад"
-    back_button = InlineKeyboardButton("◀️ Назад", callback_data="buy_book")
+    back_button = InlineKeyboardButton("◀️ Orqaga", callback_data="buy_book")
     markup.add(back_button)
 
     try:
@@ -199,7 +230,6 @@ def bts_payment(call):
     time.sleep(5)
     bot.send_message(call.message.chat.id, f"To‘lovni amalga oshirilgach, <b>tasdiqlash uchun skrinshot yuboring.</b>\n")
 
-# Обработчик нажатия на инлайн-кнопку
 @bot.callback_query_handler(func=lambda call: call.data.startswith("order_"))
 def handle_order_status_change(call):
     callback_data = call.data
@@ -292,6 +322,85 @@ def handle_payment_confirmation(message):
 
     else:
         bot.send_message(user_id, "Buyurtma topilmadi. Iltimos, qaytadan urinib ko'ring.")
+
+#-------free_course------------
+
+@bot.message_handler(func=lambda message: message.text == "✅ Bepul video dars")
+def send_video(message):
+    chat_id = message.chat.id
+    user_id = message.from_user.id
+
+    # Сохраняем данные пользователя
+    user_data[user_id] = {
+        "watched": False,
+        "start_time": time.time(),
+        "last_reminder": time.time(),
+        "message_ids": [],
+        "reminder_messages": [],  # Храним ID напоминательных сообщений
+    }
+
+    # Отправляем ссылку на видео
+    msg = bot.send_message(chat_id, f"Bepul video darsga havola: {YOUTUBE_VIDEO_LINK}")
+    user_data[user_id]["message_ids"].append(msg.message_id)
+
+    # Запускаем таймер для напоминаний через 1 минуту
+    threading.Thread(target=send_reminders, args=(chat_id, user_id), daemon=True).start()
+
+
+def send_reminders(chat_id, user_id):
+    # Напоминания каждую минуту с указанием оставшегося времени
+    # Создаём инлайн-кнопки
+    inline_markup = InlineKeyboardMarkup()
+    inline_markup.add(
+        InlineKeyboardButton("Ko‘rdim", callback_data="watched"),
+        InlineKeyboardButton("Ko‘rmadim", callback_data=f"not_watched")
+    )
+
+    for remaining_minutes in range(4, 0, -1):  # 4, 3, 2, 1
+        time.sleep(30)  # Ждём 1 минуту
+        if user_data.get(user_id) and not user_data[user_id]["watched"]:
+            reminder_msg = bot.send_message(chat_id,
+                                            f"Havolalar yopilishiga {remaining_minutes} daqiqa qoldi.", reply_markup=inline_markup)
+            user_data[user_id]["reminder_messages"].append(reminder_msg.message_id)
+
+    # После 5 минут удаляем все сообщения и кнопку
+    time.sleep(30)  # Ждём еще 1 минуту
+    if user_data.get(user_id) and not user_data[user_id]["watched"]:
+
+        for msg_id in user_data[user_id]["message_ids"]:
+            try:
+                bot.delete_message(chat_id, msg_id)
+            except Exception as e:
+                print(f"Ошибка при удалении сообщения {msg_id}: {e}")
+
+        # Удаляем все напоминания
+        for reminder_msg_id in user_data[user_id]["reminder_messages"]:
+            try:
+                bot.delete_message(chat_id, reminder_msg_id)
+            except Exception as e:
+                print(f"Ошибка при удалении напоминания {reminder_msg_id}: {e}")
+
+        user_data.pop(user_id, None)
+
+@bot.callback_query_handler(func=lambda call: call.data in ["watched", "not_watched"])
+def handle_video_response(call):
+    user_id = call.from_user.id
+    chat_id = call.message.chat.id
+
+    if call.data == "watched":
+        # Пользователь посмотрел видео
+        user_data[user_id]["watched"] = True
+        bot.send_message(chat_id, "Videoni ko‘rganingiz uchun rahmat",reply_markup=main_menu())
+        with open(FILE_PATH, "rb") as file:
+            bot.send_document(chat_id, file)
+
+    elif call.data == "not_watched":
+        # Пользователь не посмотрел видео
+        bot.send_message(chat_id, f"{YOUTUBE_VIDEO_LINK}\n👆 Videoni tomosha qilgandan keyin 'Ko‘rdim' tugmasini bosing")
+        threading.Thread(target=send_reminders, args=(chat_id, user_id), daemon=True).start()
+
+
+
 
 #--------admin_message----------
 def send_to_admin(message, course_name):
@@ -490,7 +599,7 @@ def callback_course10_handler(call):
     elif call.data == "toplam10_3_to_cart_btn":
         bot.answer_callback_query(call.id, "3chi 10ta metodli to‘plam savatchaga qo`shildi")
         add_to_cart(call.message.chat.id, f"<b>3chi 10ta metodli to‘plam.</b>", int10_price)
-        bot.send_message(call.message.chat.id, "<b>3chi 10ta metodli to‘plам</b> savatchaga qo`shилди", reply_markup=main_menu())
+        bot.send_message(call.message.chat.id, "<b>3chi 10ta metodli to‘plam</b> savatchaga qo`shildi", reply_markup=main_menu())
 
     elif call.data == "toplam7_8":
         photo = open("photos/38.png", "rb")
@@ -501,9 +610,9 @@ def callback_course10_handler(call):
             reply_markup=toplam_10ta_btn4())
 
     elif call.data == "toplam10_4_to_cart_btn":
-        bot.answer_callback_query(call.id, "4chi 10ta metodli to‘plam savatchaga qo`shилди")
-        add_to_cart(call.message.chat.id, f"<b>4chi 10ta методли to‘plам.</b>", int10_price)
-        bot.send_message(call.message.chat.id, "<b>4chi 10ta методли to‘plam</b> savatchaga qo`шилди", reply_markup=main_menu())
+        bot.answer_callback_query(call.id, "4chi 10ta metodli to‘plam savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>4chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.send_message(call.message.chat.id, "<b>4chi 10ta metodli to‘plam</b> savatchaga qo`shildi", reply_markup=main_menu())
 
     elif call.data == "toplam9_10":
         photo = open("photos/39.png", "rb")
@@ -514,9 +623,9 @@ def callback_course10_handler(call):
             reply_markup=toplam_10ta_btn5())
 
     elif call.data == "toplam10_5_to_cart_btn":
-        bot.answer_callback_query(call.id, "5chi 10ta методли to‘plам savatchaga qo`шилди")
-        add_to_cart(call.message.chat.id, f"<b>5chi 10ta методли to‘plам.</b>", int10_price)
-        bot.send_message(call.message.chat.id, "<b>5chi 10та методли to‘plam</b> savatchaga qo`шилди", reply_markup=main_menu())
+        bot.answer_callback_query(call.id, "5chi 10ta metodli to‘plam savatchaga qo`shildi")
+        add_to_cart(call.message.chat.id, f"<b>5chi 10ta metodli to‘plam.</b>", int10_price)
+        bot.send_message(call.message.chat.id, "<b>5chi 10ta metodli to‘plam</b> savatchaga qo`shildi", reply_markup=main_menu())
 
 
 @bot.callback_query_handler(func=lambda call: call.data in [
@@ -565,7 +674,7 @@ def callback_course50_handler(call):
 
 @bot.callback_query_handler(func=lambda call: call.data in [
     "menu_interaktiv", "menu_pedagogik", "kurs_ekspert",
-    "kurs_shogirt", "back_kurs", "back_to_main",
+    "kurs_shogirt", "back_kurs", "back_to_main", "back_kurs__",
     "milliy", "maqola", "tajriba", "lider", "interaktiv_5", "interaktiv_10", "interaktiv_20", "interaktiv_50", "back_to_int",
     "milliy_to_cart_btn", "tajriba_to_cart_btn", "maqola_to_cart_btn", "lider_to_cart_btn", "shogirt_ariza_btn", "expert_ariza_btn"])
 def callback_handler(call):
@@ -586,24 +695,27 @@ def callback_handler(call):
             reply_markup=pedagogik_btns())
 
     elif call.data == "kurs_ekspert":
+        bot.delete_message(call.message.chat.id, call.message.message_id)
+
         photo = open("photos/49.png", "rb")
-        bot.edit_message_media(
-            media=InputMediaPhoto(photo),
-            chat_id=call.message.chat.id,
-            message_id=call.message.message_id,
-            reply_markup=expert_ariza())
+        bot.send_photo(
+
+            photo=photo,
+            chat_id=call.message.chat.id)
+        bot.send_message(chat_id=call.message.chat.id, text=expert_text, reply_markup=expert_ariza())
 
     elif call.data == "expert_ariza_btn":
         send_to_admin(call.message, "Ekspertlar uchun metodologik xizmat")
         bot.send_message(call.message.chat.id,"Sizning ma'lumotlaringiz adminga yuborildi!", reply_markup=main_menu())
 
     elif call.data == "kurs_shogirt":
+        bot.delete_message(call.message.chat.id, call.message.message_id)
+
         photo = open("photos/50.png", "rb")
-        bot.edit_message_media(
-            media=InputMediaPhoto(photo),
-            chat_id=call.message.chat.id,
-            message_id=call.message.message_id,
-            reply_markup=shogirt_ariza())
+        bot.send_photo(
+            photo=photo,
+            chat_id=call.message.chat.id)
+        bot.send_message(chat_id=call.message.chat.id, text=shogirt_text, reply_markup=shogirt_ariza())
 
     elif call.data == "shogirt_ariza_btn":
         send_to_admin(call.message, "Shogirtlar uchun metodologik kurs")
@@ -615,6 +727,15 @@ def callback_handler(call):
             media=InputMediaPhoto(photo),
             chat_id=call.message.chat.id,
             message_id=call.message.message_id,
+            reply_markup=kurs_btns())
+
+    elif call.data == "back_kurs__":
+        photo = open("photos/21.png", "rb")
+        bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+        bot.edit_message_media(
+            media=InputMediaPhoto(photo),
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id-1,
             reply_markup=kurs_btns())
 
     elif call.data == "back_to_int":

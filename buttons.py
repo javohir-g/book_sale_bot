@@ -10,6 +10,18 @@ def main_menu():
     markup.add(korzina)
     return markup
 
+def main_menu_and_course():
+    markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    free_course = KeyboardButton("✅ Bepul video dars")
+    books = KeyboardButton("📚 Kitob")
+    courses = KeyboardButton("💻 Kurslar")
+    korzina = KeyboardButton("🗑 Savatcha")
+    markup.add(free_course)
+    markup.add(books, courses)
+    markup.add(korzina)
+    return markup
+
+
 def phone_button_uz():
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     button_phone = KeyboardButton("Telefon raqamini yuboring", request_contact=True)
@@ -30,6 +42,13 @@ def kitob_menu():
     markup.add(button1)
     markup.add(button2)
     markup.add(button3)
+    return markup
+
+def chanal_link():
+    markup = InlineKeyboardMarkup(row_width=1)
+    link_btn = InlineKeyboardButton("Kanalga obuna bo‘lish 🤩", url="https://t.me/dilafruz_xidoyatova")
+    check_sub = InlineKeyboardButton("Obuna bo‘ldim ✅", callback_data="check_subscription")
+    markup.add(link_btn, check_sub)
     return markup
 
 def kitob_buy():
@@ -97,14 +116,14 @@ def buy():
 def shogirt_ariza():
     markup = InlineKeyboardMarkup(row_width=1)
     button1 = InlineKeyboardButton("Ariza yuborish", callback_data="shogirt_ariza_btn")
-    button5 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_kurs")
+    button5 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_kurs__")
     markup.add(button1, button5)
     return markup
 
 def expert_ariza():
     markup = InlineKeyboardMarkup(row_width=1)
     button1 = InlineKeyboardButton("Ariza yuborish", callback_data="expert_ariza_btn")
-    button5 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_kurs")
+    button5 = InlineKeyboardButton("⬅️ Orqaga", callback_data="back_kurs__")
     markup.add(button1, button5)
     return markup
 
